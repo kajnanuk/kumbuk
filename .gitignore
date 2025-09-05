@@ -1,0 +1,81 @@
+#builds
+cmake-build-debug/
+cmake-build-release/
+cmake-build-*/
+build/
+out/
+
+# clion
+.idea/
+*.iml
+cmake-build-*/
+
+#Qt
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+*.rcc
+*.qrc.cpp
+Makefile*
+*.Debug
+*.Release
+
+#cmake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+
+#compiled binaries and object files
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.o
+*.obj
+
+#temp
+*~
+*.swp
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+#Qt moc files
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+
+#docs
+doc/html/
+doc/latex/
+
+#reports
+*.gcov
+*.gcda
+*.gcno
+
+#profiling
+gmon.out
+*.prof
+
+# package files
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+
+# logs
+*.log
+
+# ext lib build leftovers
+external/*/build/
+external/*/cmake-build-*/
