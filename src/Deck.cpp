@@ -5,12 +5,13 @@
 #include "../include/Deck.h"
 #include <fstream>
 #include <iostream>
+#include <utility>
 
 //constructors
 Deck::Deck() : deckName_("Untitled Deck") {
 }
 
-Deck::Deck(const std::string& deckName) : deckName_(deckName) {
+Deck::Deck(std::string  deckName) : deckName_(std::move(deckName)) {
 }
 
 //managing card
@@ -18,17 +19,17 @@ void Deck::addCard(const Card& card) {
     cards_.push_back(card);
 }
 
-void Deck::removeCard(size_t index) {
+void Deck::removeCard(const int index) {
     if (index < cards_.size()) {
         cards_.erase(cards_.begin() + index);
     }
 }
 
-Card& Deck::getCard(size_t index) {
+Card& Deck::getCard(const size_t index) {
     return cards_.at(index);
 }
 
-const Card& Deck::getCard(size_t index) const {
+const Card& Deck::getCard(const size_t index) const {
     return cards_.at(index);
 }
 
@@ -113,15 +114,6 @@ bool Deck::saveToFile(const std::string& filepath) const {
 }
 
 //other methods
-std::vector<Card> Deck::getDueCards() const {
-    std::vector<Card> dueCards;
-    for (const auto& card : cards_) {
-        if (card.isDue()) {
-            dueCards.push_back(card);
-        }
-    }
-    return dueCards;
-}
 
 void Deck::clear() {
     cards_.clear();

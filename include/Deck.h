@@ -16,33 +16,32 @@ class Deck {
 public:
     //constructor
     Deck();
-    Deck(const std::string& deckName);
+    explicit Deck(std::string  deckName);
 
     //managing cards
     void addCard(const Card& card);
-    void removeCard(size_t index);
+    void removeCard(int index);
     Card& getCard(size_t index);
-    const Card& getCard(size_t index) const;
-    size_t getCardCount() const;
+    [[nodiscard]] const Card& getCard(size_t index) const;
+    [[nodiscard]] size_t getCardCount() const;
 
     //deck getters and setters
-    const std::string& getDeckName() const;
+    [[nodiscard]] const std::string& getDeckName() const;
     void setDeckName(const std::string& name);
 
     // managing files
     bool loadFromFile(const std::string& filepath);
-    bool saveToFile(const std::string& filepath) const;
+    [[nodiscard]] bool saveToFile(const std::string& filepath) const;
 
     //other
-    std::vector<Card> getDueCards() const;
     void clear();
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     // iterator
     std::vector<Card>::iterator begin();
     std::vector<Card>::iterator end();
-    std::vector<Card>::const_iterator begin() const;
-    std::vector<Card>::const_iterator end() const;
+    [[nodiscard]] std::vector<Card>::const_iterator begin() const;
+    [[nodiscard]] std::vector<Card>::const_iterator end() const;
 
 private:
     std::string deckName_;

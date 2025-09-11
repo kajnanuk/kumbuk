@@ -6,18 +6,16 @@
 #include <sstream>
 #include <iomanip>
 #include <ctime>
+#include <utility>
 
 //default constructor
-Card::Card() : word_(""), meaning_(""), reviewCount_(0),
-               lastReviewDate_(""), easinessFactor_(2.5), interval_(1) {
+Card::Card() : reviewCount_(0),easinessFactor_(2.5), interval_(1) {
 }
 
 //consturctor with parameters
-Card::Card(const std::string& word, const std::string& meaning)
-    : word_(word), meaning_(meaning), reviewCount_(0),
-      easinessFactor_(2.5), interval_(1) {
-    lastReviewDate_ = getCurrentDateString();
-}
+Card::Card(std::string  word, std::string  meaning)
+    : word_(std::move(word)), meaning_(std::move(meaning)), reviewCount_(0),
+      easinessFactor_(2.5), interval_(1) {}
 
 //getters
 const std::string& Card::getWord() const { return word_; }
@@ -30,29 +28,10 @@ int Card::getInterval() const { return interval_; }
 //setters
 void Card::setWord(const std::string& word) { word_ = word; }
 void Card::setMeaning(const std::string& meaning) { meaning_ = meaning; }
-void Card::setReviewCount(int count) { reviewCount_ = count; }
+void Card::setReviewCount(const int count) { reviewCount_ = count; }
 void Card::setLastReviewDate(const std::string& date) { lastReviewDate_ = date; }
-void Card::setEasinessFactor(double factor) { easinessFactor_ = factor; }
-void Card::setInterval(int interval) { interval_ = interval; }
-
-// check if card due
-bool Card::isDue() const {
-    if (lastReviewDate_.empty()) return true;
-
-    // TODO
-    return true;
-}
-
-// current date as string
-std::string Card::getCurrentDateString() const {
-    auto now = std::chrono::system_clock::now();
-    auto time_t = std::chrono::system_clock::to_time_t(now);
-    auto tm = *std::localtime(&time_t);
-
-    std::stringstream ss;
-    ss << std::put_time(&tm, "%Y-%m-%d");
-    return ss.str();
-}
+void Card::setEasinessFactor(const double factor) { easinessFactor_ = factor; }
+void Card::setInterval(const int interval) { interval_ = interval; }
 
 //json serialisation
 void to_json(json& j, const Card& card) {

@@ -6,7 +6,6 @@
 #define CARD_H
 
 #include <string>
-#include <chrono>
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
@@ -15,15 +14,15 @@ class Card {
 public:
     // constructors
     Card();
-    Card(const std::string& word, const std::string& meaning);
+    Card(std::string  word, std::string  meaning);
 
     //getters
-    const std::string& getWord() const;
-    const std::string& getMeaning() const;
-    int getReviewCount() const;
-    const std::string& getLastReviewDate() const;
-    double getEasinessFactor() const;
-    int getInterval() const;
+    [[nodiscard]] const std::string& getWord() const;
+    [[nodiscard]] const std::string& getMeaning() const;
+    [[nodiscard]] int getReviewCount() const;
+    [[nodiscard]] const std::string& getLastReviewDate() const;
+    [[nodiscard]] double getEasinessFactor() const;
+    [[nodiscard]] int getInterval() const;
 
     //setters
     void setWord(const std::string& word);
@@ -33,9 +32,6 @@ public:
     void setEasinessFactor(double factor);
     void setInterval(int interval);
 
-    //other
-    bool isDue() const;
-    std::string getCurrentDateString() const;
 
 private:
     std::string word_;
