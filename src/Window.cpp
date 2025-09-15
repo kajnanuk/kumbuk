@@ -97,7 +97,7 @@ void Window::setupDeckButton() {
     deckActionsLayout_->setSpacing(2);
 
     //deck actions buttons
-
+    renameDeckButton_ = new QPushButton("rename deck");
     newDeckButton_ = new QPushButton("new deck");
     openDeckButton_ = new QPushButton("open deck");
     saveDeckButton_ = new QPushButton("save deck");
@@ -106,6 +106,7 @@ void Window::setupDeckButton() {
     closeButton = new QPushButton("close");
 
     //actions styling
+    renameDeckButton_->setStyleSheet(buttonStyle1_);
     newDeckButton_->setStyleSheet(buttonStyle1_);
     openDeckButton_->setStyleSheet(buttonStyle1_);
     saveDeckButton_->setStyleSheet(buttonStyle1_);
@@ -113,6 +114,7 @@ void Window::setupDeckButton() {
     aboutButton_->setStyleSheet(buttonStyle1_);
     closeButton->setStyleSheet(buttonStyle1_);
     //actions size policy
+    renameDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     newDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     openDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     saveDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
@@ -121,6 +123,7 @@ void Window::setupDeckButton() {
     closeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 
     //connecting signals
+    connect(renameDeckButton_, &QPushButton::clicked, this, &Window::renameDeck);
     connect(newDeckButton_, &QPushButton::clicked, this, &Window::newDeck);
     connect(openDeckButton_, &QPushButton::clicked, this, &Window::openDeck);
     connect(saveDeckButton_, &QPushButton::clicked, this, &Window::saveDeck);
@@ -129,6 +132,7 @@ void Window::setupDeckButton() {
     connect(closeButton, &QPushButton::clicked, this, &Window::toggleDeckActions);
 
     //add buttons to layout
+    deckActionsLayout_->addWidget(renameDeckButton_);
     deckActionsLayout_->addWidget(newDeckButton_);
     deckActionsLayout_->addWidget(openDeckButton_);
     deckActionsLayout_->addWidget(saveDeckButton_);
@@ -254,6 +258,25 @@ void Window::toggleDeckActions() {
         deckActionsFrame_->hide();
         navigationFrame_->show();
         stackedWidget_->show();
+    }
+}
+
+void Window::renameDeck() {
+    bool ok;
+    QString currentName = QString::fromStdString(currentDeck_.getDeckName());
+    QString newName = QInputDialog::getText(
+        this,
+        "rename deck",
+        "new deck name:",
+        QLineEdit::Normal,
+        currentName,
+        &ok
+    );
+
+    if (ok && !newName.isEmpty() && newName != currentName) {
+        currentDeck_.setDeckName(newName.toStdString());
+        updateDeckButton();
+        showDeckMessage("DECK RENAMED", 2000);
     }
 }
 

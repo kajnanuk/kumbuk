@@ -14,6 +14,7 @@
 #include <QFrame>
 #include <QMenuBar>
 #include <QTimer>
+#include <QInputDialog>
 
 #include "Deck.h"
 #include "Scheduler.h"
@@ -36,6 +37,7 @@ private slots:
     void showInsightsMode() const;
 
     //deck button actions
+    void renameDeck();
     void newDeck();
     void openDeck();
     void saveDeck();
@@ -59,6 +61,7 @@ private:
     //deck button state
     bool deckActionsVisible_;
     //deck actions
+    QPushButton *renameDeckButton_;
     QPushButton *newDeckButton_;
     QPushButton *openDeckButton_;
     QPushButton *saveDeckButton_;
