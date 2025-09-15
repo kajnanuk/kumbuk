@@ -7,8 +7,25 @@
 
 
 
-class Insights {
+#include <QWidget>
+#include <QLabel>
+#include <QVBoxLayout>
 
+class Deck;
+class Scheduler;
+
+class Insights : public QWidget {
+    Q_OBJECT
+
+public:
+    explicit Insights(Deck *deck, Scheduler *scheduler, QWidget *parent = nullptr);
+
+    ~Insights() override = default;
+
+private:
+    Deck *deck_;
+    Scheduler *scheduler_;
+    QLabel *placeholderLabel_;
 };
 
 

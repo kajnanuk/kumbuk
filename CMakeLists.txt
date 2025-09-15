@@ -12,6 +12,18 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 # Add nlohmann/json if included as submodule
 add_subdirectory(external/json)
 
+#headers
+set(HEADERS
+        include/Add.h
+        include/Card.h
+        include/Deck.h
+        include/Insights.h
+        include/Practice.h
+        include/Scheduler.h
+        include/Statistics.h
+        include/Window.h
+)
+
 # Source files (add all your .cpp files here)
 set(SOURCES
         main.cpp
@@ -26,16 +38,19 @@ set(SOURCES
         # src/other_file.cpp
 )
 
-add_executable(kumbuk ${SOURCES})
+# Enable Qt automoc and uic for signals/slots and .ui files
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)  # if using Qt resource files
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+add_executable(kumbuk ${SOURCES} ${HEADERS})
 
 # Link Qt libraries and nlohmann json
 target_link_libraries(kumbuk PRIVATE Qt6::Widgets nlohmann_json::nlohmann_json)
 
 
-# Enable Qt automoc and uic for signals/slots and .ui files
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)  # if using Qt resource files
+
 
 # Include directories if needed (usually handled by target_link_libraries)
 target_include_directories(kumbuk PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)

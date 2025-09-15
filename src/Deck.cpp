@@ -8,7 +8,7 @@
 #include <utility>
 
 //constructors
-Deck::Deck() : deckName_("Untitled Deck") {
+Deck::Deck() : deckName_("unnamed deck") {
 }
 
 Deck::Deck(std::string  deckName) : deckName_(std::move(deckName)) {
@@ -50,7 +50,7 @@ void Deck::setDeckName(const std::string& name) {
 bool Deck::loadFromFile(const std::string& filepath) {
     std::ifstream file(filepath);
     if (!file.is_open()) {
-        std::cerr << "Error: Could not open file for reading: " << filepath << std::endl;
+        std::cerr << "error: could not open file for reading: " << filepath << std::endl;
         return false;
     }
 

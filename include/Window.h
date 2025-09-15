@@ -1,16 +1,107 @@
-//
-// Created by kajna on 05/09/2025.
-//
-
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <QMainWindow>
+#include <QStackedWidget>
+#include <QPushButton>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QStatusBar>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QMenu>
+#include <QFrame>
+#include <QMenuBar>
+#include <QTimer>
+
+#include "Deck.h"
+#include "Scheduler.h"
+
+class Add;
+class Practice;
+class Insights;
+
+class Window : public QMainWindow {
+    Q_OBJECT
+
+public:
+    explicit Window(QWidget *parent = nullptr);
+    ~Window() override;
+
+private slots:
+    //slots for mode widgets
+    void showAddMode() const;
+    void showPracticeMode() const;
+    void showInsightsMode() const;
+
+    //deck button actions
+    void newDeck();
+    void openDeck();
+    void saveDeck();
+    void saveAsDeck();
+    void aboutApp();
+
+private:
+    //ui setup
+    void setupUI();
+    void setupDeckButton();
+    void setupNavigationBar();
+    void createModeWidgets();
+    //ui segmenty
+    QWidget *centralWidget_;
+    QVBoxLayout *mainLayout_;
+
+    //deck button
+    QPushButton *deckButton_;
+    QFrame *deckActionsFrame_;
+    QVBoxLayout *deckActionsLayout_;
+    //deck button state
+    bool deckActionsVisible_;
+    //deck actions
+    QPushButton *newDeckButton_;
+    QPushButton *openDeckButton_;
+    QPushButton *saveDeckButton_;
+    QPushButton *saveAsDeckButton_;
+    QPushButton *aboutButton_;
+    QPushButton *closeButton;
+    //deck message timer
+    QTimer* messageTimer_;
+
+    //main navigation
+    QHBoxLayout *navigationLayout_;
+    QFrame *navigationFrame_;
+    QPushButton *addButton_;
+    QPushButton *practiceButton_;
+    QPushButton *insightsButton_;
+
+    //mode widgets
+    QStackedWidget *stackedWidget_;
+    Add *addWidget_;
+    Practice *practiceWidget_;
+    Insights *insightsWidget_;
+
+    //data
+    Deck currentDeck_;
+    Scheduler scheduler_;
+    QString currentFilePath_;
+
+    //button style
+    QString buttonStyle1_;
+    void initialiseButtonStyle1();
+
+    //helpers
+    void updateNavigationState() const;
+    void setCurrentDeck(const Deck &deck, const QString &filePath = "");
+    //deck button helpers
+    void updateDeckButton() const;
+    void toggleDeckActions();
+    bool saveCurrentDeck();
+    bool loadDeckFromFile(const QString &filePath);
+    void showDeckMessage(const QString &msg, int timeoutMs);
 
 
-class Window {
 
 };
 
-
-
-#endif //WINDOW_H
+#endif // WINDOW_H

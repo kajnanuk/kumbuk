@@ -7,8 +7,25 @@
 
 
 
-class Practice {
+#include <QWidget>
+#include <QLabel>
+#include <QVBoxLayout>
 
+class Deck;
+class Scheduler;
+
+class Practice : public QWidget {
+    Q_OBJECT
+
+public:
+    explicit Practice(Deck *deck, Scheduler *scheduler, QWidget *parent = nullptr);
+
+    ~Practice() override = default;
+
+private:
+    Deck *deck_;
+    Scheduler *scheduler_;
+    QLabel *placeholderLabel_;
 };
 
 
