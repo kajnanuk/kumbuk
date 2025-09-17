@@ -50,6 +50,7 @@ private:
     void setupDeckButton();
     void setupNavigationBar();
     void createModeWidgets();
+    void recreateModeWidgets();
     //ui segmenty
     QWidget *centralWidget_;
     QVBoxLayout *mainLayout_;
@@ -61,15 +62,15 @@ private:
     //deck button state
     bool deckActionsVisible_;
     //deck actions
-    QPushButton *renameDeckButton_;
-    QPushButton *newDeckButton_;
-    QPushButton *openDeckButton_;
-    QPushButton *saveDeckButton_;
-    QPushButton *saveAsDeckButton_;
-    QPushButton *aboutButton_;
-    QPushButton *closeButton;
+    QPushButton *renameDeckButton_{nullptr};
+    QPushButton *newDeckButton_{nullptr};
+    QPushButton *openDeckButton_{nullptr};
+    QPushButton *saveDeckButton_{nullptr};
+    QPushButton *saveAsDeckButton_{nullptr};
+    QPushButton *aboutButton_{nullptr};
+    QPushButton *closeButton_{nullptr};
     //deck message timer
-    QTimer* messageTimer_;
+    QTimer* messageTimer_{nullptr};
 
     //main navigation
     QHBoxLayout *navigationLayout_;
@@ -101,7 +102,7 @@ private:
     void toggleDeckActions();
     bool saveCurrentDeck();
     bool loadDeckFromFile(const QString &filePath);
-    void showDeckMessage(const QString &msg, int timeoutMs);
+    void showDeckMessage(const QString &msg, int timeoutMs) const;
 
 
 

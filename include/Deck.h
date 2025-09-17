@@ -24,6 +24,8 @@ public:
     Card& getCard(size_t index);
     [[nodiscard]] const Card& getCard(size_t index) const;
     [[nodiscard]] size_t getCardCount() const;
+    [[nodiscard]] std::vector<Card> getAllCards() const;
+    void updateCard(const Card& updatedCard);
 
     //deck getters and setters
     [[nodiscard]] const std::string& getDeckName() const;
@@ -42,6 +44,7 @@ public:
     std::vector<Card>::iterator end();
     [[nodiscard]] std::vector<Card>::const_iterator begin() const;
     [[nodiscard]] std::vector<Card>::const_iterator end() const;
+
 
 private:
     std::string deckName_;

@@ -37,6 +37,19 @@ size_t Deck::getCardCount() const {
     return cards_.size();
 }
 
+std::vector<Card> Deck::getAllCards() const {
+    return cards_;
+}
+
+void Deck::updateCard(const Card& updatedCard) {
+    for (auto& card : cards_) {
+        if (card.getWord() == updatedCard.getWord()) {
+            card = updatedCard;
+            break;
+        }
+    }
+}
+
 //deck props
 const std::string& Deck::getDeckName() const {
     return deckName_;

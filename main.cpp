@@ -12,11 +12,11 @@ int main(int argc, char *argv[]) {
     QFont monoFont("Courier New");
     monoFont.setStyleHint(QFont::Monospace);
     monoFont.setPointSize(12);
-    app.setFont(monoFont);
+    QApplication::setFont(monoFont);
 
     //app properties
     QApplication::setApplicationName("kumbuk");
-    QApplication::setApplicationVersion("0.3");
+    QApplication::setApplicationVersion("0.4");
     QApplication::setOrganizationName("kajnanuk");
 
     Window window;

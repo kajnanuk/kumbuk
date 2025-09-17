@@ -13,6 +13,7 @@ Window::Window(QWidget *parent)
     , deckButton_(nullptr)
     , deckActionsFrame_(nullptr)
     , deckActionsLayout_(nullptr)
+    , deckActionsVisible_(false)
     , navigationLayout_(nullptr)
     , navigationFrame_(nullptr)
     , addButton_(nullptr)
@@ -22,8 +23,7 @@ Window::Window(QWidget *parent)
     , addWidget_(nullptr)
     , practiceWidget_(nullptr)
     , insightsWidget_(nullptr)
-    , currentDeck_("unnameded deck")
-    , deckActionsVisible_(false)
+    , currentDeck_("unnamed deck")
 {
     //ustawiamy styl, przygotowujemy interfejs, tworzymy nowy deck, przechodzimy do ekranu decka
     initialiseButtonStyle1();
@@ -103,7 +103,7 @@ void Window::setupDeckButton() {
     saveDeckButton_ = new QPushButton("save deck");
     saveAsDeckButton_ = new QPushButton("save as...");
     aboutButton_ = new QPushButton("about kumbuk");
-    closeButton = new QPushButton("close");
+    closeButton_ = new QPushButton("close");
 
     //actions styling
     renameDeckButton_->setStyleSheet(buttonStyle1_);
@@ -112,7 +112,7 @@ void Window::setupDeckButton() {
     saveDeckButton_->setStyleSheet(buttonStyle1_);
     saveAsDeckButton_->setStyleSheet(buttonStyle1_);
     aboutButton_->setStyleSheet(buttonStyle1_);
-    closeButton->setStyleSheet(buttonStyle1_);
+    closeButton_->setStyleSheet(buttonStyle1_);
     //actions size policy
     renameDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     newDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
@@ -120,7 +120,7 @@ void Window::setupDeckButton() {
     saveDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     saveAsDeckButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     aboutButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-    closeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    closeButton_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 
     //connecting signals
     connect(renameDeckButton_, &QPushButton::clicked, this, &Window::renameDeck);
@@ -129,7 +129,7 @@ void Window::setupDeckButton() {
     connect(saveDeckButton_, &QPushButton::clicked, this, &Window::saveDeck);
     connect(saveAsDeckButton_, &QPushButton::clicked, this, &Window::saveAsDeck);
     connect(aboutButton_, &QPushButton::clicked, this, &Window::aboutApp);
-    connect(closeButton, &QPushButton::clicked, this, &Window::toggleDeckActions);
+    connect(closeButton_, &QPushButton::clicked, this, &Window::toggleDeckActions);
 
     //add buttons to layout
     deckActionsLayout_->addWidget(renameDeckButton_);
@@ -140,7 +140,7 @@ void Window::setupDeckButton() {
     deckActionsLayout_->addStretch();
     deckActionsLayout_->addWidget(aboutButton_);
     deckActionsLayout_->addStretch();
-    deckActionsLayout_->addWidget(closeButton);
+    deckActionsLayout_->addWidget(closeButton_);
 
     //add to main layout
     mainLayout_->addWidget(deckButton_, 0);
@@ -158,7 +158,7 @@ void Window::setupNavigationBar() {
     //navigation buttons
     addButton_ = new QPushButton("add");
     practiceButton_ = new QPushButton("practice");
-    insightsButton_ = new QPushButton("statistics");
+    insightsButton_ = new QPushButton("insights");
 
     //button style
     addButton_->setStyleSheet(buttonStyle1_);
@@ -206,6 +206,33 @@ void Window::createModeWidgets() {
     //add stacked widget to main layout
     mainLayout_->addWidget(stackedWidget_, 1);
 }
+//for refreshing
+void Window::recreateModeWidgets() {
+    //remove old widgets
+    if (addWidget_) {
+        stackedWidget_->removeWidget(addWidget_);
+        delete addWidget_;
+    }
+    if (practiceWidget_) {
+        stackedWidget_->removeWidget(practiceWidget_);
+        delete practiceWidget_;
+    }
+    if (insightsWidget_) {
+        stackedWidget_->removeWidget(insightsWidget_);
+        delete insightsWidget_;
+    }
+
+    //create new widgets with current deck
+    addWidget_ = new Add(&currentDeck_, &scheduler_);
+    practiceWidget_ = new Practice(&currentDeck_, &scheduler_);
+    insightsWidget_ = new Insights(&currentDeck_, &scheduler_);
+
+    //add to stacked widget
+    stackedWidget_->addWidget(addWidget_);
+    stackedWidget_->addWidget(practiceWidget_);
+    stackedWidget_->addWidget(insightsWidget_);
+}
+
 
 // navigation slots
 void Window::showAddMode() const {
@@ -263,8 +290,8 @@ void Window::toggleDeckActions() {
 
 void Window::renameDeck() {
     bool ok;
-    QString currentName = QString::fromStdString(currentDeck_.getDeckName());
-    QString newName = QInputDialog::getText(
+    const QString currentName = QString::fromStdString(currentDeck_.getDeckName());
+    const QString newName = QInputDialog::getText(
         this,
         "rename deck",
         "new deck name:",
@@ -281,14 +308,14 @@ void Window::renameDeck() {
 }
 
 void Window::newDeck() {
-    Deck newDeck("unnamed deck");
+    const Deck newDeck("unnamed deck");
     setCurrentDeck(newDeck);
     toggleDeckActions();
     showAddMode();
 }
 
 void Window::openDeck() {
-    QString filePath = QFileDialog::getOpenFileName(
+    const QString filePath = QFileDialog::getOpenFileName(
         this,
         "open deck",
         QDir::currentPath() + "/data",
@@ -297,7 +324,7 @@ void Window::openDeck() {
 
     if (!filePath.isEmpty()) {
         loadDeckFromFile(filePath);
-        toggleDeckActions();
+        showAddMode();
     }
 }
 
@@ -311,7 +338,7 @@ void Window::saveDeck() {
 }
 
 void Window::saveAsDeck() {
-    QString filePath = QFileDialog::getSaveFileName(
+    const QString filePath = QFileDialog::getSaveFileName(
         this,
         "save deck",
         QDir::currentPath() + "/data/" + QString::fromStdString(currentDeck_.getDeckName()) + ".json",
@@ -360,7 +387,7 @@ void Window::initialiseButtonStyle1() {
 
 void Window::updateNavigationState() const {
     //if the deck is empty, allow only add mode
-    bool hasCards = currentDeck_.getCardCount() > 0;
+    const bool hasCards = currentDeck_.getCardCount() > 0;
 
     practiceButton_->setEnabled(hasCards);
     insightsButton_->setEnabled(hasCards);
@@ -374,12 +401,13 @@ void Window::updateNavigationState() const {
 void Window::setCurrentDeck(const Deck &deck, const QString &filePath) {
     currentDeck_ = deck;
     currentFilePath_ = filePath;
+    recreateModeWidgets();
     updateDeckButton();
     updateNavigationState();
 }
 
 void Window::updateDeckButton() const {
-    QString deckInfo = QString("%1")
+    const QString deckInfo = QString("%1")
         .arg(QString::fromStdString(currentDeck_.getDeckName()));
     deckButton_->setText(deckInfo);
 }
@@ -399,8 +427,7 @@ bool Window::saveCurrentDeck() {
 }
 
 bool Window::loadDeckFromFile(const QString &filePath) {
-    Deck loadedDeck;
-    if (loadedDeck.loadFromFile(filePath.toStdString())) {
+    if (Deck loadedDeck; loadedDeck.loadFromFile(filePath.toStdString())) {
         setCurrentDeck(loadedDeck, filePath);
         showDeckMessage("DECK LOADED", 2000);
         return true;
@@ -410,15 +437,15 @@ bool Window::loadDeckFromFile(const QString &filePath) {
     }
 }
 
-void Window::showDeckMessage(const QString& message, int timeoutInMs = 2000) {
+void Window::showDeckMessage(const QString& msg, const int timeoutMs = 2000) const {
     //stop previous timer
     if (messageTimer_->isActive()) {
         messageTimer_->stop();
     }
 
     //show message
-    deckButton_->setText(message);
+    deckButton_->setText(msg);
 
     //restart timer to restore normal text
-    messageTimer_->start(timeoutInMs);
+    messageTimer_->start(timeoutMs);
 }
