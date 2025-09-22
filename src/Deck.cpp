@@ -50,6 +50,12 @@ void Deck::updateCard(const Card& updatedCard) {
     }
 }
 
+void Deck::assignCard(size_t index, const Card& card) {
+    if (index < cards_.size()) {
+        cards_[index] = card;
+    }
+}
+
 //deck props
 const std::string& Deck::getDeckName() const {
     return deckName_;

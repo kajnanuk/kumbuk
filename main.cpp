@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 
     //app properties
     QApplication::setApplicationName("kumbuk");
-    QApplication::setApplicationVersion("0.4");
+    QApplication::setApplicationVersion("0.5");
     QApplication::setOrganizationName("kajnanuk");
 
     Window window;

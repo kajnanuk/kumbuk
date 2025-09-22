@@ -34,7 +34,7 @@ void Practice::setupDisplayArea() {
     //display layout
     displayLayout_ = new QVBoxLayout(displayFrame_);
     displayLayout_->setAlignment(Qt::AlignCenter);
-    displayLayout_->setContentsMargins(20, 20, 20, 20);
+    displayLayout_->setContentsMargins(10, 10, 10, 10);
     displayLayout_->setSpacing(20);
 
     //card content
@@ -51,10 +51,11 @@ void Practice::setupDisplayArea() {
     instructionLabel_->setAlignment(Qt::AlignCenter);
     instructionLabel_->setStyleSheet(
         "QLabel {"
-        "  color: #888888;"
-        "  font-size: 14px;"
-        "  border: none;"
-        "  font-weight: bold;"
+        " color: #888888;"
+        " font-size: 20px;"
+        " border: 1px solid #888888;"
+        " padding: 10px;"
+        " font-weight: bold;"
         "}"
     );
 
@@ -85,12 +86,12 @@ void Practice::setupRatingButtons() {
 
     //button labels
     const QStringList buttonLabels = {
-        "6\nperfect",
-        "5\ngood",
-        "4\nokay",
-        "3\nbad",
-        "2\nawful",
-        "1\nsad"
+        "perfect",
+        "good",
+        "okay",
+        "bad",
+        "awful",
+        "sad"
     };
 
     //button style and connection
@@ -125,7 +126,7 @@ void Practice::initializeCards() {
             instructionLabel_->setText("add more cards or come back later");
         }
     } else {
-        cardLabel_->setText("error: no deck loaded");
+        cardLabel_->setText("no deck loaded");
         instructionLabel_->setText("load a deck first");
     }
 }
@@ -234,7 +235,7 @@ QString Practice::getButtonStyle() {
         "QPushButton {"
         "  color: white;"
         "  border: 1px solid white;"
-        "  font-size: 18px;"
+        "  font-size: 20px;"
         "  font-weight: bold;"
         "  border-radius: 0px;"
         "  text-align: center;"

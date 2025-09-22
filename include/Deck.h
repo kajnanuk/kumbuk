@@ -26,6 +26,7 @@ public:
     [[nodiscard]] size_t getCardCount() const;
     [[nodiscard]] std::vector<Card> getAllCards() const;
     void updateCard(const Card& updatedCard);
+    void assignCard(size_t index, const Card& card);
 
     //deck getters and setters
     [[nodiscard]] const std::string& getDeckName() const;

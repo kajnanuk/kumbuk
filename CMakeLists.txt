@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 set(CMAKE_PREFIX_PATH "C:\\Qt\\6.9.2\\mingw_64\\lib\\cmake")
-# Find Qt (Widgets module)
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+# find Qt
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network)
 
 # Add nlohmann/json if included as submodule
 add_subdirectory(external/json)
@@ -47,10 +47,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_executable(kumbuk ${SOURCES} ${HEADERS})
 
 # Link Qt libraries and nlohmann json
-target_link_libraries(kumbuk PRIVATE Qt6::Widgets nlohmann_json::nlohmann_json)
-
-
-
+target_link_libraries(kumbuk PRIVATE Qt6::Core Qt6::Widgets Qt6::Network nlohmann_json::nlohmann_json)
 
 # Include directories if needed (usually handled by target_link_libraries)
 target_include_directories(kumbuk PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)

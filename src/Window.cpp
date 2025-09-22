@@ -367,7 +367,7 @@ void Window::initialiseButtonStyle1() {
         "QPushButton {"
         "   color: white;"
         "   border: 1px solid white;"
-        "   padding: 10px 20px;"
+        "   padding: 10px;"
         "   font-size: 20px;"
         "   font-weight: bold;"
         "   border-radius: 0px;"
