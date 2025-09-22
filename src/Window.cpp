@@ -324,7 +324,8 @@ void Window::openDeck() {
 
     if (!filePath.isEmpty()) {
         loadDeckFromFile(filePath);
-        showAddMode();
+        if (currentDeck_.isEmpty()) showAddMode();
+        else showPracticeMode();
     }
 }
 
