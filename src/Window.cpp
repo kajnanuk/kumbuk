@@ -3,9 +3,6 @@
 #include "../include/Practice.h"
 #include "../include/Insights.h"
 
-#include <QApplication>
-#include <QDir>
-
 Window::Window(QWidget *parent)
     : QMainWindow(parent)
     , centralWidget_(nullptr)
@@ -318,7 +315,7 @@ void Window::openDeck() {
     const QString filePath = QFileDialog::getOpenFileName(
         this,
         "open deck",
-        QDir::currentPath() + "/data",
+        QDir::currentPath(),
         "JSON Files (*.json);;All Files (*)"
     );
 
@@ -342,7 +339,7 @@ void Window::saveAsDeck() {
     const QString filePath = QFileDialog::getSaveFileName(
         this,
         "save deck",
-        QDir::currentPath() + "/data/" + QString::fromStdString(currentDeck_.getDeckName()) + ".json",
+        QDir::currentPath() + QString::fromStdString(currentDeck_.getDeckName()) + ".json",
         "JSON Files (*.json);;All Files (*)"
     );
 

@@ -15,6 +15,8 @@
 #include <QMenuBar>
 #include <QTimer>
 #include <QInputDialog>
+#include <QApplication>
+#include <QDir>
 
 #include "Deck.h"
 #include "Scheduler.h"
