@@ -36,7 +36,7 @@ Window::~Window() = default;
 void Window::setupUI() {
     //window props
     setWindowTitle("kumbuk");
-    setMinimumSize(800, 600);
+    setMinimumSize(860, 645);
     resize(1200, 900);
 
     //no menu bar

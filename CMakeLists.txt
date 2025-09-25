@@ -20,7 +20,6 @@ set(HEADERS
         include/Insights.h
         include/Practice.h
         include/Scheduler.h
-        include/Statistics.h
         include/Window.h
 )
 
@@ -28,7 +27,6 @@ set(HEADERS
 set(SOURCES
         main.cpp
         src/Scheduler.cpp
-        src/Statistics.cpp
         src/Card.cpp
         src/Deck.cpp
         src/Window.cpp
