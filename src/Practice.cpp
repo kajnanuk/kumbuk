@@ -158,17 +158,16 @@ void Practice::loadNextCard() {
 
     //refresh
     updateCardDisplay();
-
-    //enable rating buttons
-    for (const auto & ratingButton : ratingButtons_) {
-        ratingButton->setEnabled(true);
-    }
 }
 
 void Practice::updateCardDisplay() const {
     if (!currentCard_) return;
 
     if (!meaningVisible_) {
+        //disable rating buttons
+        for (const auto & ratingButton : ratingButtons_) {
+            ratingButton->setEnabled(false);
+        }
         //show front
         const QString word = QString::fromStdString(currentCard_->getWord());
 
@@ -180,6 +179,10 @@ void Practice::updateCardDisplay() const {
         //instruction
         instructionLabel_->setText("right-click to reveal");
     } else {
+        //enable rating buttons
+        for (const auto & ratingButton : ratingButtons_) {
+            ratingButton->setEnabled(true);
+        }
         //show both front and back
         const QString word = QString::fromStdString(currentCard_->getWord());
         const QString meaning = QString::fromStdString(currentCard_->getMeaning());
