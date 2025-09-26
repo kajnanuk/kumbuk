@@ -365,9 +365,14 @@ void Window::saveAsDeck() {
 void Window::aboutApp() {
     QMessageBox::about(this, "about kumbuk",
         "kumbuk is\n\n"
-        "a flashcards app with spaced repetition.\n\n"
-        "Qt6 used.\nnlohmann/json used.\nsm-2 used.\n\n"
-        "© kajnanuk 2025");
+        "a flashcards app with spaced repetition.\n"
+        "licensed under LGPL v3.\n\n"
+        "this app uses:\n"
+        "- Qt Framework (LGPL v3) - Copyright The Qt Company Ltd.\n"
+        "- nlohmann/json (MIT) - Copyright © 2013-2025 Niels Lohmann\n"
+        "- SM-2 Algorithm - Algorithm SM-2, (C) Copyright SuperMemo World, 1991.\n\n"
+        "Full license information available in the project's LICENSE and THIRD-PARTY-LICENSES files.\n\n"
+        "Copyright (c) 2025 kajnanuk");
 }
 
 //button style
