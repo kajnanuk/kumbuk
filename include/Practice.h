@@ -1,8 +1,17 @@
-//
-// Created by kajna on 05/09/2025.
-//
 #ifndef PRACTICE_H
 #define PRACTICE_H
+/*
+ * Copyright (c) 2025 kajnanuk
+ * Licensed under LGPL v3
+ *
+ * This application uses:
+ * - Qt Framework (LGPL v3) - Copyright The Qt Company Ltd.
+ * - nlohmann/json (MIT) - Copyright © 2013-2025 Niels Lohmann
+ * - SM-2 Algorithm - Algorithm SM-2, (C) Copyright SuperMemo World, 1991.
+ *
+ * Full license information available in the project's LICENSE and THIRD-PARTY-LICENSES files.
+ */
+
 
 #include <QWidget>
 #include <QLabel>
