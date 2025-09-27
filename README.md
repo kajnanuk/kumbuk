@@ -34,11 +34,74 @@ If you're on another system:
 * build and run the project yourself
 
 ---
-
 ## Usage
-<details><summary>Click to expand</summary>
 
+<details><summary>create a new deck</summary>
+![new deck](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/new_deck.gif)
 </details>
+
+<details><summary>rename a deck</summary>
+![rename deck](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/rename_deck.gif)
+</details>
+
+<details><summary>save a deck as...</summary>![save deck as](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/save_as_deck.gif)</details>
+
+<details><summary>open a deck</summary>
+![open deck](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/open_deck.gif)
+</details>
+
+<details><summary>save a deck</summary>
+![save deck](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/save_deck.gif)
+</details>
+
+<details><summary>open about page</summary>
+![about dialog](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/about_dialog.gif)
+</details>
+
+<details><summary>close deck configuration screen</summary>
+![close deck screen](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/close_deck_screen.gif)
+</details>
+
+<details><summary>add a card</summary>
+![add card](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_add.gif)
+</details>
+
+<details><summary>save a card</summary>
+![save card](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_save.gif)
+</details>
+
+<details><summary>edit a card</summary>
+![edit card](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_edit.gif)
+</details>
+
+<details><summary>view cards in a deck</summary>
+![view cards](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_view.gif)
+</details>
+
+<details><summary>flip a card</summary>
+![flip card](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_flip.gif)
+</details>
+
+<details><summary>delete a card</summary>
+![delete card](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_delete.gif)
+</details>
+
+<details><summary>look up a definition on Wikipedia</summary>
+![wikipedia lookup](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_wikipedia.gif)
+</details>
+
+<details><summary>change language for Wikipedia lookup</summary>
+![change language](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/add_mode_languages.gif)
+</details>
+
+<details><summary>practice your cards in the practice mode</summary>
+![practice mode](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/practice_mode.gif)
+</details>
+
+<details><summary>check out your deck stats and learning efficiency</summary>
+![insights mode](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/insights_mode.gif)
+</details>
+
 
 ---
 
