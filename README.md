@@ -1,6 +1,7 @@
-## Project status
-This is a student project for a university course. 
-It is intended for learning and demonstration purposes and is therefore not in active development.
+> ## Project status
+> This is a student project for a university course. 
+> It is intended for learning and demonstration purposes and is therefore not in active development.
+
 
 ---
 
