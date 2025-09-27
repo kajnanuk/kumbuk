@@ -15,11 +15,11 @@ It is intended for learning and demonstration purposes and is therefore not in a
 
 ## Features
 
-* the add mode let's you view, delete, and add cards with wikipedia lookup
+* the add mode lets you view, delete, and add cards with wikipedia lookup
 
-* the practice mode let's you study your decks with the SuperMemo-2 algorithm spaced repetition
+* the practice mode lets you study your decks with the SuperMemo-2 algorithm spaced repetition
 
-* the insights mode let's you peek into your deck's stats and your learning efficiency
+* the insights mode lets you peek into your deck's stats and your learning efficiency
 
 ---
 
