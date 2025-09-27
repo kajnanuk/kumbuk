@@ -6,6 +6,7 @@
  * - Qt Framework (LGPL v3) - Copyright The Qt Company Ltd.
  * - nlohmann/json (MIT) - Copyright © 2013-2025 Niels Lohmann
  * - SM-2 Algorithm - Algorithm SM-2, (C) Copyright SuperMemo World, 1991.
+ * - Wikipedia content (CC BY-SA 4.0) – “Wikipedia contributors”
  *
  * Full license information available in the project's LICENSE and THIRD-PARTY-LICENSES files.
  */
@@ -407,12 +408,25 @@ void Add::onWikipediaResponse(QNetworkReply* reply) const {
     bool found = false;
     for (auto it = pages.begin(); it != pages.end(); ++it) {
         QJsonObject page = it.value().toObject();
+        QString articleTitle = page["title"].toString();
 
         if (QString extract = page["extract"].toString(); !extract.isEmpty() && !extract.contains("may refer to")) {
             const QString cleanedExtract = extract.left(800) + (extract.length() > 800 ? "..." : "");
-            QString langCode = currentLanguage_.toUpper();
-            const QString result = QString("%2").arg(cleanedExtract);
 
+            QString languageCode = currentLanguage_;
+            QString wikipediaName = getWikipediaName(languageCode);
+            QString articleUrl = QString("https://%1.wikipedia.org/wiki/%2")
+                                    .arg(languageCode, articleTitle.replace(" ", "_"));
+
+            const QString attribution = QString(
+                "\n\n────────────────\n"
+                "Source: %1, article \"%2\"\n"
+                "By Wikipedia contributors\n"
+                "Licensed under CC BY-SA 4.0\n"
+                "%3"
+            ).arg(wikipediaName, articleTitle, articleUrl);
+
+            const QString result = cleanedExtract + attribution;
             meaningEdit_->setPlainText(result);
             instructionLabel_->setText("wikipedia definition found - review, edit, save");
             found = true;
@@ -431,6 +445,23 @@ void Add::onWikipediaResponse(QNetworkReply* reply) const {
     }
 
     reply->deleteLater();
+}
+
+QString Add::getWikipediaName(const QString& languageCode) {
+    const QMap<QString, QString> languageMap = {
+        {"en", "English Wikipedia"},
+        {"es", "Wikipedia en español"},
+        {"fr", "Wikipédia français"},
+        {"de", "Deutsche Wikipedia"},
+        {"it", "Wikipedia italiano"},
+        {"pt", "Wikipédia português"},
+        {"zh", "中文维基百科"},
+        {"ja", "ウィキペディア日本語版"},
+        {"ko", "한국어 위키백과"},
+        {"pl", "Wikipedia polska"}
+    };
+
+    return languageMap.value(languageCode, "Wikipedia");
 }
 
 QString Add::cleanHtml(const QString& html) {
@@ -490,7 +521,7 @@ void Add::updateDisplay() const {
 
         //font style
         const QString text = cardLabel_->text();
-        cardLabel_->setStyleSheet(getResponsiveCardStyle(text.length()));
+        cardLabel_->setStyleSheet(getResponsiveCardStyle(static_cast<int>(text.length())));
     }
 }
 

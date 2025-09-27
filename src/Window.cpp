@@ -6,6 +6,7 @@
  * - Qt Framework (LGPL v3) - Copyright The Qt Company Ltd.
  * - nlohmann/json (MIT) - Copyright © 2013-2025 Niels Lohmann
  * - SM-2 Algorithm - Algorithm SM-2, (C) Copyright SuperMemo World, 1991.
+ * - Wikipedia content (CC BY-SA 4.0) – “Wikipedia contributors”
  *
  * Full license information available in the project's LICENSE and THIRD-PARTY-LICENSES files.
  */
@@ -370,7 +371,8 @@ void Window::aboutApp() {
         "this app uses:\n"
         "- Qt Framework (LGPL v3) - Copyright The Qt Company Ltd.\n"
         "- nlohmann/json (MIT) - Copyright © 2013-2025 Niels Lohmann\n"
-        "- SM-2 Algorithm - Algorithm SM-2, (C) Copyright SuperMemo World, 1991.\n\n"
+        "- SM-2 Algorithm - Algorithm SM-2, (C) Copyright SuperMemo World, 1991.\n"
+        "- Wikipedia content (CC BY-SA 4.0) - Wikipedia contributors from multiple language editions.\n\n"
         "Full license information available in the project's LICENSE and THIRD-PARTY-LICENSES files.\n\n"
         "Copyright (c) 2025 kajnanuk");
 }
