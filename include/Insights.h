@@ -53,6 +53,7 @@ private:
 
     //update display
     void updateStatisticDisplay() const;
+    void enableButtons(const int currentInsight) const;
 
     // style
     static QString getButtonStyle() ;

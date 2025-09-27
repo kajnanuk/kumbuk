@@ -162,6 +162,7 @@ void Insights::updateStatisticDisplay() const {
             instructionLabel_->setText("choose from the options on the right");
             break;
     }
+    enableButtons(currentInsight_);
 
     // update title
     const QStringList titles = {
@@ -174,6 +175,15 @@ void Insights::updateStatisticDisplay() const {
     };
     if (currentInsight_ >= 0 && currentInsight_ < titles.size()) {
         titleLabel_->setText(titles[currentInsight_]);
+    }
+}
+
+void Insights::enableButtons(const int currentInsight) const {
+    insightButtons_[currentInsight]->setEnabled(false);
+    for (int i=0;i<6;i++) {
+        if (i!=currentInsight) {
+            insightButtons_[i]->setEnabled(true);
+        }
     }
 }
 
@@ -566,7 +576,10 @@ QString Insights::getButtonStyle() {
            "} "
            "QPushButton:pressed { "
            "background-color: #0000ff; "
-           "}";
+           "}"
+            "QPushButton:disabled {"
+            "  background-color: #0000ff;"
+            "}";
 }
 
 QString Insights::getDisplayStyle() {
