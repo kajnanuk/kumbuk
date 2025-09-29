@@ -1,10 +1,3 @@
-> ## Project status
-> This is a student project for a university course. 
-> It is intended for learning and demonstration purposes and is therefore not in active development.
-
-
----
-
 ![header](https://gitlab.com/kajnanuk/kumbuk/-/raw/main/assets/GIFs/header.gif)
 # kumbuk
 
@@ -14,13 +7,43 @@
 
 ---
 
-## Features
+## Let's break it down
 
-* the add mode lets you view, delete, and add cards with wikipedia lookup
+1. [flashcard](https://en.wikipedia.org/wiki/Flashcard) - 
+a card with information on both sides, 
+typically a word, question or prompt on one side and the definition 
+or answer on the other; a set of flashcards is called a _deck_
 
-* the practice mode lets you study your decks with the SuperMemo-2 algorithm spaced repetition
+2. [active recall](https://en.wikipedia.org/wiki/Testing_effect) - 
+the learning technique where your brain actively tries to retrieve information from memory
+rather than passively reviewing content; [research](https://journals.sagepub.com/doi/10.3102/0034654316689306) 
+has shown that this is one of the most effective learning methods; 
+flashcards are all about it!
 
-* the insights mode lets you peek into your deck's stats and your learning efficiency
+3. [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition) - 
+the learning technique where you review information in increasing time intervals
+(to battle the hypothesised [forgetting curve](https://en.wikipedia.org/wiki/Forgetting_curve));
+flashcards most often use it!
+
+4. [SuperMemo-2](https://en.wikipedia.org/wiki/SuperMemo#Description_of_SM-2_algorithm) - 
+the algorithm that computes the right time to review a flashcard, based on how well you recalled the information
+(this is the implementation of spaced repetition)
+
+5. wikipedia lookup - pastes a fragment of a wikipedia article for you into the definition side of the flashcard
+
+---
+
+## Features of kumbuk
+- lets you create and manage your _decks_ of _flashcards_
+
+- promotes _active recall_ using _flashcards_
+
+- uses the _SuperMemo-2_ algorithm for calculating the 
+right time to review your _flashcards_ based on _spaced repetition_ principles
+
+- look up _wikipedia_ definitions of concepts while creating your _decks_
+
+* the insights mode lets you peek into your _deck_'s stats and your learning efficiency
 
 ---
 
